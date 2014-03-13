@@ -1,0 +1,19 @@
+{
+  "name": "otl_extension",
+  "version": "0.0.1",
+  "description": "OTL, but less terrible",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Audrey Schwarz",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.3",
+    "grunt-contrib-jasmine": "~0.6.1"
+  }
+}
