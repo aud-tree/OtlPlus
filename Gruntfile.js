@@ -11,7 +11,8 @@ module.exports = function(grunt) {
           vendor: ['src/jquery*.min.js', 'spec/vendor/*.js'],
           display: 'short',
           summary: true,
-          outfile: 'spec/specRunner.html'
+          outfile: 'spec/specRunner.html',
+          keepRunner: true
         }
       }
     }

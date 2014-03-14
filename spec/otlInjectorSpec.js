@@ -5,6 +5,8 @@ describe('otlInjector', function() {
       return $("#" + id).val();
     });
   };
+  var data = ['106302', '4.0', '456789', '1', 'CONTRACT LABOR - OTL', 0, 8, 8, 8, 8, 8, 0]
+  var expecteds = data.map(function(datum) { return "" + datum; });
 
   beforeEach(function() {
     jasmine.getFixtures().fixturesPath = 'fixtures/'
@@ -13,15 +15,15 @@ describe('otlInjector', function() {
   });
 
   it("populates an existing row", function() {
-    var data = ['106302', '4.0', '456789', '1', 'CONTRACT LABOR - OTL', 0, 8, 8, 8, 8, 8, 0]
-
     this.injector.populateRow(1, data);
 
-    var expecteds = data.map(function(datum) { return "" + datum; });
     expect(fieldValues(1)).toEqual(expecteds);
   });
 
   it("creates a new row when the specified row doesn't exist", function() {
-    pending();
+    this.injector.populateRow(3, data);
+
+    expect(fieldValues(3)).toEqual(expecteds);
+    expect($("table tbody tr input#A233N1display").length).toBeGreaterThan(0);
   });
 });
