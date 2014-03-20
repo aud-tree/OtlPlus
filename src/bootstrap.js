@@ -1,7 +1,5 @@
-chrome.tabs.onUpdated.addListener(showPageAction);
-
-function showPageAction(tabId, changeInfo, tab) {
-  if(tab.url.indexOf('ebiz.manheim.com') > -1) {
-    chrome.pageAction.show(tabId);
-  }
-};
+chrome.webNavigation.onCompleted.addListener(
+  function(e) {
+    chrome.pageAction.show(e.tabId);
+  }, {url: [{hostContains: 'ebiz.manheim.com'}]}
+);

@@ -14,9 +14,10 @@
   "author": "Audrey Schwarz",
   "content_scripts": [ {
     "matches": [ "https://ebiz.manheim.com/*" ],
-    "js": [ "jquery-2.1.0.min.js", "otlInjector.js" ]
+    "js": [ "jquery-2.1.0.min.js", "otlInjector.js", "otlInjectorListener.js" ]
   } ],
   "permissions": [
-    "tabs"
+    "tabs",
+    "webNavigation"
   ]
 }
