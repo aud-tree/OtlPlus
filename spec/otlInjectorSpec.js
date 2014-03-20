@@ -5,8 +5,10 @@ describe('otlInjector', function() {
       return $("#" + id).val();
     });
   };
-  var data = ['106302', '4.0', '456789', '1', 'CONTRACT LABOR - OTL', 0, 8, 8, 8, 8, 8, 0]
-  var expecteds = data.map(function(datum) { return "" + datum; });
+  var data = function(timecode) { return ['' + timecode, '4.0', '456789', '1', 'CONTRACT LABOR - OTL', 0, 8, 8, 8, 8, 8, 0] };
+  var expecteds = function(timecode) {
+    return data(timecode).map(function(datum) { return "" + datum; });
+  }
 
   beforeEach(function() {
     jasmine.getFixtures().fixturesPath = 'fixtures/'
@@ -15,15 +17,21 @@ describe('otlInjector', function() {
   });
 
   it("populates an existing row", function() {
-    this.injector.populateRow(1, data);
+    this.injector.populateRow(1, data(123456));
 
-    expect(fieldValues(1)).toEqual(expecteds);
+    expect(fieldValues(1)).toEqual(expecteds(123456));
   });
 
-  it("creates a new row when the specified row doesn't exist", function() {
-    this.injector.populateRow(3, data);
+  it("populates a table", function() {
+    this.injector.populateTable([data(106048), data(123456)]);
 
-    expect(fieldValues(3)).toEqual(expecteds);
-    expect($("table tbody tr input#A233N1display").length).toBeGreaterThan(0);
+    expect([fieldValues(1), fieldValues(2)]).toEqual([expecteds(106048), expecteds(123456)]);
+  });
+
+  it("doesn't populate the table when there aren't enough rows", function() {
+    this.injector.populateTable([data(106048), data(123456), data(234567)]);
+
+    var emptyRow = ['','','','','','','','','','','',''];
+    expect([fieldValues(1), fieldValues(2)]).toEqual([emptyRow, emptyRow]);
   });
 });
