@@ -12,7 +12,9 @@ angular.module('OtlPlusServices', [])
     }
 
     function cache(timesheet) {
-      chrome.storage.local.set(CACHE_KEY, timesheet);
+      var object = {};
+      object[CACHE_KEY] = timesheet;
+      chrome.storage.local.set(object);
     }
 
     return {

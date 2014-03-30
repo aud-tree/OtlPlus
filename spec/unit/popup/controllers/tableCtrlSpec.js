@@ -6,6 +6,8 @@ describe('TableCtrl', function() {
     },
     blankRow: function() {
       return 'new row';
+    },
+    cache: function() {
     }
   };
 
@@ -31,6 +33,16 @@ describe('TableCtrl', function() {
       scope.addRow();
 
       expect(scope.timesheet.length).toEqual(2);
+    });
+  });
+
+  describe('.cache', function() {
+    it('caches the current timesheet', function() {
+      cacheSpy = spyOn(fakeTimesheet, 'cache');
+
+      scope.cache();
+
+      expect(cacheSpy).toHaveBeenCalledWith(['test']);
     });
   });
 });

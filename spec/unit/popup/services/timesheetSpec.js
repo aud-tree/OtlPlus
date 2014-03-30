@@ -6,7 +6,7 @@ describe('Timesheet', function() {
   chrome = {
     storage: {local: {
       get: function(key, callback) {callback(chromeStorageReturns);},
-      set: function(key, data) {chromeStorageSaved = {key: key, data: data};}
+      set: function(data) {chromeStorageSaved = data;}
     }}
   };
 
@@ -62,7 +62,7 @@ describe('Timesheet', function() {
 
       this.Timesheet.cache(data);
 
-      expect(chromeStorageSaved).toEqual({key: 'otl-timesheet-cached', data: data});
+      expect(chromeStorageSaved).toEqual({'otl-timesheet-cached': data});
     });
   });
 

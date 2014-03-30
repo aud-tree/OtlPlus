@@ -25,8 +25,18 @@
       </thead>
       <tbody>
         <tr data-ng-repeat="row in timesheet track by $index">
-          <td><input data-ng-model="row.project"></td>
-          <td><input data-ng-model="row.task"></td>
+          <td>
+            <select
+              data-ng-model="row.project"
+              data-ng-options="p for p in projects"
+              data-ng-change="cache()"></select>
+          </td>
+          <td>
+            <select
+              data-ng-model="row.task"
+              data-ng-options="t for t in tasks"
+              data-ng-change="cache()"></select>
+          </td>
           <td>0</td>
           <td>0</td>
           <td>0</td>
