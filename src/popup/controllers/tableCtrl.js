@@ -1,6 +1,6 @@
-angular.module('OtlPlusControllers', [])
-  .controller('TableCtrl', ['$scope', 'Timesheet', function($scope, Timesheet) {
-    $scope.projects = ['a','b','c'];
+angular.module('OtlPlusControllers')
+  .controller('TableCtrl', ['$scope', 'Timesheet', 'Types', function($scope, Timesheet, Types) {
+    $scope.projects = Types.projects();
     $scope.tasks = ['a','b','c'];
 
     Timesheet.inProgress().then(function(timesheet) {

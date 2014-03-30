@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jasmine: {
       otlPlus: {
-        src: ['src/content_scripts/injector.js', 'src/popup/**/*.js'],
+        src: ['src/content_scripts/injector.js', 'src/popup/app.js', 'src/popup/**/*.js'],
         options: {
           specs: 'spec/**/*Spec.js',
           vendor: ['src/vendor/*.js', 'spec/vendor/*.js'],

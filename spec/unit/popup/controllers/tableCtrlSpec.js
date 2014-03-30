@@ -11,8 +11,12 @@ describe('TableCtrl', function() {
     }
   };
 
+  var fakeTypes = {
+    projects: function() {}
+  };
+
   function createController() {
-    return controllerFactory('TableCtrl', {$scope: scope, Timesheet: fakeTimesheet});
+    return controllerFactory('TableCtrl', {$scope: scope, Timesheet: fakeTimesheet, Types: fakeTypes});
   }
 
   beforeEach(module('OtlPlusControllers'));

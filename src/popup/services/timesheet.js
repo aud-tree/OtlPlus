@@ -1,4 +1,4 @@
-angular.module('OtlPlusServices', [])
+angular.module('OtlPlusServices')
   .factory('Timesheet', ['$q', function($q) {
     var CACHE_KEY = 'otl-timesheet-cached'
     function blank() {return [{project: null, task: null}]};
@@ -17,9 +17,11 @@ angular.module('OtlPlusServices', [])
       chrome.storage.local.set(object);
     }
 
+    function blankRow() { return blank()[0]; }
+
     return {
       inProgress: inProgress,
       cache: cache,
-      blankRow: function() {return blank()[0];}
+      blankRow: blankRow
     };
   }]);
