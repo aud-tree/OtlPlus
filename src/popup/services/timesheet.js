@@ -1,12 +1,12 @@
 angular.module('OtlPlusServices', [])
   .factory('Timesheet', ['$q', function($q) {
     var CACHE_KEY = 'otl-timesheet-cached'
-    var _blank = [{project: null, task: null}];
+    function blank() {return [{project: null, task: null}]};
 
     function inProgress() {
       var deferred = $q.defer();
       chrome.storage.local.get(CACHE_KEY, function(data) {
-        deferred.resolve(data[CACHE_KEY] || _blank);
+        deferred.resolve(data[CACHE_KEY] || blank());
       });
       return deferred.promise;
     }
@@ -17,6 +17,7 @@ angular.module('OtlPlusServices', [])
 
     return {
       inProgress: inProgress,
-      cache: cache
+      cache: cache,
+      blankRow: function() {return blank()[0];}
     };
   }]);

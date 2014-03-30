@@ -24,9 +24,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="row in timesheet">
-          <td>{{row.project}}</td>
-          <td>{{row.task}}</td>
+        <tr data-ng-repeat="row in timesheet track by $index">
+          <td><input data-ng-model="row.project"></td>
+          <td><input data-ng-model="row.task"></td>
           <td>0</td>
           <td>0</td>
           <td>0</td>
@@ -38,6 +38,7 @@
         </tr>
       </tbody>
     </table>
+    <button data-ng-click="addRow()">Add Row</button>
   </div>
 
   <script type="text/javascript" src="../vendor/jquery-2.1.0.min.js"></script>

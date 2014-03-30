@@ -1,7 +1,8 @@
 var chrome;
 
 describe('Timesheet', function() {
-  var serviceFactory, qResolve, chromeStorageReturns, chromeStorageSaved;
+  var serviceFactory, qResolve, chromeStorageReturns, chromeStorageSaved, blankRow;
+  blankRow = [{project: null, task: null}];
   chrome = {
     storage: {local: {
       get: function(key, callback) {callback(chromeStorageReturns);},
@@ -41,7 +42,7 @@ describe('Timesheet', function() {
 
       this.Timesheet.inProgress();
 
-      expect(this.qSpy).toHaveBeenCalledWith([{project: null, task: null}]);
+      expect(this.qSpy).toHaveBeenCalledWith(blankRow);
     });
 
     it('initializes with cached data when a timesheet is in progress', function() {
@@ -54,12 +55,24 @@ describe('Timesheet', function() {
     });
   });
 
-  it('caches a timesheet', function() {
-    chromeStorageSaved = null;
-    var data = [{project: 'project', task: '1'}];
+  describe('.cache', function() {
+    it('caches a timesheet', function() {
+      chromeStorageSaved = null;
+      var data = [{project: 'project', task: '1'}];
 
-    this.Timesheet.cache(data);
+      this.Timesheet.cache(data);
 
-    expect(chromeStorageSaved).toEqual({key: 'otl-timesheet-cached', data: data});
+      expect(chromeStorageSaved).toEqual({key: 'otl-timesheet-cached', data: data});
+    });
+  });
+
+  describe('.blankRow', function() {
+    it('returns a blank row', function() {
+      expect(this.Timesheet.blankRow()).toEqual(blankRow[0]);
+    });
+
+    it('returns unique objects on successive calls', function() {
+      expect(this.Timesheet.blankRow()).not.toBe(this.Timesheet.blankRow());
+    });
   });
 });

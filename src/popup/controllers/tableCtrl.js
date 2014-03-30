@@ -3,4 +3,6 @@ angular.module('OtlPlusControllers', [])
     Timesheet.inProgress().then(function(timesheet) {
       $scope.timesheet = timesheet;
     });
+
+    $scope.addRow = function() { $scope.timesheet.push(Timesheet.blankRow()); };
   }])

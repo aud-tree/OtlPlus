@@ -2,7 +2,10 @@ describe('TableCtrl', function() {
   var scope, $rootScope, controllerFactory;
   var fakeTimesheet = {
     inProgress: function() {
-      return {then: sinon.stub().yields('test')};
+      return {then: sinon.stub().yields(['test'])};
+    },
+    blankRow: function() {
+      return 'new row';
     }
   };
 
@@ -17,9 +20,17 @@ describe('TableCtrl', function() {
     controllerFactory = $controller;
   }));
 
-  it('initializes a timesheet', function() {
-    createController();
+  beforeEach(createController);
 
-    expect(scope.timesheet).toEqual('test');
+  it('initializes a timesheet', function() {
+    expect(scope.timesheet).toEqual(['test']);
+  });
+
+  describe('.addRow', function() {
+    it('adds a row', function() {
+      scope.addRow();
+
+      expect(scope.timesheet.length).toEqual(2);
+    });
   });
 });
