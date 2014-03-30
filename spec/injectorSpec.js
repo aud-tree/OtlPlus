@@ -12,7 +12,7 @@ describe('otlInjector', function() {
 
   beforeEach(function() {
     jasmine.getFixtures().fixturesPath = 'fixtures/'
-    loadFixtures('otlInjector.html');
+    loadFixtures('injector.html');
     this.injector = otl.injector();
   });
 

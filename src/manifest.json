@@ -5,16 +5,16 @@
   "description": "OTL, but less terrible",
   "page_action": {
     "default_title": "OTL+",
-    "default_popup": "app/ui.html"
+    "default_popup": "popup/index.html"
   },
   "background": {
-    "scripts": [ "bootstrap.js" ],
+    "scripts": [ "background/background.js" ],
     "persistent": false
   },
   "author": "Audrey Schwarz",
   "content_scripts": [ {
     "matches": [ "https://ebiz.manheim.com/*" ],
-    "js": [ "jquery-2.1.0.min.js", "otlInjector.js", "otlInjectorListener.js" ]
+    "js": [ "vendor/jquery-2.1.0.min.js", "content_scripts/injector.js", "content_scripts/listener.js" ]
   } ],
   "permissions": [
     "tabs",
