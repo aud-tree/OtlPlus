@@ -1,0 +1,47 @@
+<!doctype html>
+<html data-ng-app="OtlPlus">
+<head>
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+  <div data-ng-controller="TableCtrl">
+    <h4>Timesheet</h4>
+    <table>
+      <colgroup span="2">
+      <colgroup span="7">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Task</th>
+          <th>Su</th>
+          <th>M</th>
+          <th>T</th>
+          <th>W</th>
+          <th>Th</th>
+          <th>F</th>
+          <th>Sa</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="row in timesheet">
+          <td>{{row.project}}</td>
+          <td>{{row.task}}</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script type="text/javascript" src="../jquery-2.1.0.min.js"></script>
+  <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript" src="ui-js.js"></script>
+</body>
+</html>

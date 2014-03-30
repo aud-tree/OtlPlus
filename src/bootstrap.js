@@ -1,5 +1,5 @@
 chrome.webNavigation.onCompleted.addListener(
-  function(e) {
-    chrome.pageAction.show(e.tabId);
+  function(event) {
+    chrome.pageAction.show(event.tabId);
   }, {url: [{hostContains: 'ebiz.manheim.com'}]}
 );
