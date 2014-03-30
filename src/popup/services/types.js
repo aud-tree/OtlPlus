@@ -8,7 +8,22 @@ angular.module('OtlPlusServices')
       {name: 'be posted on github.', value: '100004', taskType: 2},
     ];
 
+    var TASKS = {
+      1: [
+        {name: 'Fake', value: '1.0'},
+        {name: 'Codes', value: '2.0'},
+        {name: 'Yaaaay', value: '3.0'}
+      ],
+      2: [
+        {name: 'More Fake', value: '1.0'},
+        {name: 'Codes2', value: '2.0'},
+        {name: 'Yaaaay2', value: '3.0'}
+      ]
+    };
+
     function projects() { return PROJECTS; }
+
+    function tasks() { return TASKS; }
 
     function matchProjectsFor(timesheet) {
       return timesheet.map(function(row) {
@@ -19,6 +34,7 @@ angular.module('OtlPlusServices')
 
     return {
       projects: projects,
-      matchProjectsFor: matchProjectsFor
+      matchProjectsFor: matchProjectsFor,
+      tasks: tasks
     };
   });

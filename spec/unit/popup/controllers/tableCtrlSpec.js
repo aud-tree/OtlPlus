@@ -12,7 +12,8 @@ describe('TableCtrl', function() {
   };
 
   var fakeTypes = {
-    projects: function() {}
+    projects: function() {},
+    tasks: function() {}
   };
 
   function createController() {

@@ -21,6 +21,12 @@ describe('Types', function() {
     });
   });
 
+  describe('.tasks', function() {
+    it('returns task codes', function() {
+      expect(this.Types.tasks()[1].length).toEqual(3);
+    });
+  });
+
   describe('.matchProjectsFor', function() {
     it('returns references matching each project in the provided set', function() {
       expect(this.Types.matchProjectsFor(
