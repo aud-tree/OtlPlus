@@ -10,7 +10,15 @@ angular.module('OtlPlusServices')
 
     function projects() { return PROJECTS; }
 
+    function matchProjectsFor(timesheet) {
+      return timesheet.map(function(row) {
+        row.project = PROJECTS.filter(function(proj) { return proj.value == row.project.value })[0];
+        return row;
+      });
+    }
+
     return {
-      projects: projects
+      projects: projects,
+      matchProjectsFor: matchProjectsFor
     };
   });

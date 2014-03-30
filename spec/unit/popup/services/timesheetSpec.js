@@ -15,6 +15,11 @@ describe('Timesheet', function() {
     return qResolve;
   }};
 
+  var fakeTypes = {
+    projects: function() {},
+    matchProjectsFor: function(data) { return data; }
+  };
+
   function createService() {
     return serviceFactory('Timesheet');
   }
@@ -23,6 +28,7 @@ describe('Timesheet', function() {
     module('OtlPlusServices');
     module(function($provide) {
       $provide.value('$q', q);
+      $provide.value('Types', fakeTypes);
     });
   });
 

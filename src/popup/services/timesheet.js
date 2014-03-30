@@ -1,12 +1,12 @@
 angular.module('OtlPlusServices')
-  .factory('Timesheet', ['$q', function($q) {
+  .factory('Timesheet', ['$q', 'Types', function($q, Types) {
     var CACHE_KEY = 'otl-timesheet-cached'
     function blank() {return [{project: null, task: null}]};
 
     function inProgress() {
       var deferred = $q.defer();
       chrome.storage.local.get(CACHE_KEY, function(data) {
-        deferred.resolve(data[CACHE_KEY] || blank());
+        deferred.resolve(Types.matchProjectsFor(data[CACHE_KEY]) || blank());
       });
       return deferred.promise;
     }

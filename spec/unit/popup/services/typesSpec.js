@@ -20,4 +20,14 @@ describe('Types', function() {
       expect(this.Types.projects().length).toEqual(5);
     });
   });
+
+  describe('.matchProjectsFor', function() {
+    it('returns references matching each project in the provided set', function() {
+      expect(this.Types.matchProjectsFor(
+        [{project: {value: this.Types.projects()[0].value}}]
+      )).toEqual(
+        [{project: this.Types.projects()[0]}]
+      );
+    });
+  });
 });
