@@ -1,4 +1,4 @@
-angular.module('OtlPlus', ['OtlPlus-services', 'OtlPlus-controllers']);
+angular.module('OtlPlus', ['OtlPlusServices', 'OtlPlusControllers']);
 
 // disregard below
 

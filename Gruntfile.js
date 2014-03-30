@@ -5,10 +5,10 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jasmine: {
       otlPlus: {
-        src: ['src/content_scripts/injector.js'],
+        src: ['src/content_scripts/injector.js', 'src/popup/controllers/*.js'],
         options: {
           specs: 'spec/**/*Spec.js',
-          vendor: ['src/vendor/jquery*.min.js', 'spec/vendor/*.js'],
+          vendor: ['src/vendor/*.js', 'spec/vendor/*.js'],
           display: 'short',
           summary: true,
           outfile: 'spec/specRunner.html',

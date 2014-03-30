@@ -1,4 +1,4 @@
-angular.module('OtlPlus-services', [])
+angular.module('OtlPlusServices', [])
   .factory('Timesheet', ['$q', function($q) {
     var CACHE_KEY = 'otl-timesheet-cached'
     var _blank = [{project: null, task: null}];

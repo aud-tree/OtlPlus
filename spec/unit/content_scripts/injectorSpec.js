@@ -1,4 +1,4 @@
-describe('otlInjector', function() {
+describe('injector', function() {
   var fieldValues = function(i) {
     return ["A23"+i+"N1display", "A24"+i+"N1display", "A25"+i+"N1display", "A26"+i+"N1display", "A27"+i+"N1display",
     "B21_"+i+"_0", "B21_"+i+"_1", "B21_"+i+"_2", "B21_"+i+"_3", "B21_"+i+"_4", "B21_"+i+"_5", "B21_"+i+"_6"].map(function(id) {
@@ -11,7 +11,7 @@ describe('otlInjector', function() {
   }
 
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = 'fixtures/'
+    jasmine.getFixtures().fixturesPath = 'unit/fixtures/'
     loadFixtures('injector.html');
     this.injector = otl.injector();
   });
