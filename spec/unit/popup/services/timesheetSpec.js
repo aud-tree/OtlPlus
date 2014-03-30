@@ -1,9 +1,12 @@
 var chrome;
 
 describe('Timesheet', function() {
-  var serviceFactory, qResolve, chromeStorageReturns;
+  var serviceFactory, qResolve, chromeStorageReturns, chromeStorageSaved;
   chrome = {
-    storage: {local: {get: function(key, callback) {callback(chromeStorageReturns);}}}
+    storage: {local: {
+      get: function(key, callback) {callback(chromeStorageReturns);},
+      set: function(key, data) {chromeStorageSaved = {key: key, data: data};}
+    }}
   };
 
   qResolve = {resolve: function(data) {}};
@@ -26,10 +29,11 @@ describe('Timesheet', function() {
     serviceFactory = $injector.get;
   }));
 
-  describe('inProgress', function() {
+  beforeEach(function() { this.Timesheet = createService(); });
+
+  describe('.inProgress', function() {
     beforeEach(function() {
       this.qSpy = spyOn(qResolve, 'resolve');
-      this.Timesheet = createService();
     });
 
     it('initializes a blank row when no timesheet is in progress', function() {
@@ -51,6 +55,11 @@ describe('Timesheet', function() {
   });
 
   it('caches a timesheet', function() {
-    pending();
+    chromeStorageSaved = null;
+    var data = [{project: 'project', task: '1'}];
+
+    this.Timesheet.cache(data);
+
+    expect(chromeStorageSaved).toEqual({key: 'otl-timesheet-cached', data: data});
   });
 });
