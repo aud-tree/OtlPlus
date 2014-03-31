@@ -6,7 +6,7 @@
 <body>
   <div ng-controller="TableCtrl">
     <h4>Timesheet</h4>
-    <label>PO: <input id="po" type="text" ng-model="po"></label>
+    <label>PO: <input id="po" ng-model="po" ng-change="cachePo()"></label>
     <table>
       <colgroup span="2">
       <colgroup span="7">
@@ -46,6 +46,7 @@
       </tbody>
     </table>
     <button ng-click="addRow()">Add Row</button>
+    <button class="insertBtn">Send to OTL Form</button>
   </div>
 
   <script type="text/javascript" src="../vendor/jquery-2.1.0.min.js"></script>
