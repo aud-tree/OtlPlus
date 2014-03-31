@@ -21,33 +21,12 @@ angular.module('OtlPlusServices')
       ]
     };
 
-    function projects() { return PROJECTS; }
+    function projectNames() { return PROJECTS.map(function(p) { return p.name; }); }
 
-    function tasks() { return TASKS; }
-
-    function matchProjectsFor(timesheet) {
-      return timesheet ? timesheet.map(function(row) {
-        row.project = row.project ? PROJECTS.filter(function(proj) { return proj.value == row.project.value })[0] : null;
-        return row;
-      }) : timesheet;
-    }
-
-    function matchTasksFor(timesheet) {
-      return timesheet ? timesheet.map(function(row) {
-        row.task = row.task ? TASKS[row.project.taskType].filter(function(t) { return t.value == row.task.value })[0] : null;
-        return row;
-      }) : timesheet;
-    }
-
-    function matchProjectsAndTasksFor(timesheet) {
-      return matchTasksFor(matchProjectsFor(timesheet));
-    }
+    function taskNames() { return TASKS; }
 
     return {
-      projects: projects,
-      tasks: tasks,
-      matchProjectsFor: matchProjectsFor,
-      matchTasksFor: matchTasksFor,
-      matchProjectsAndTasksFor: matchProjectsAndTasksFor
+      projectNames: projectNames,
+      taskNames: taskNames,
     };
   });

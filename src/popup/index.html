@@ -28,14 +28,14 @@
         <tr ng-repeat="row in timesheet track by $index">
           <td>
             <select
-              ng-model="row.project"
-              ng-options="p.name for p in projects"
+              ng-model="row.projectName"
+              ng-options="name for name in projectNames"
               ng-change="cache()"></select>
           </td>
           <td>
             <select
-              ng-model="row.task"
-              ng-options="t.name for t in tasks[row.project['taskType']]"
+              ng-model="row.taskName"
+              ng-options=""
               ng-change="cache()"></select>
           </td>
           <td ng-repeat="hour in row.hours track by $index">

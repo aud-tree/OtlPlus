@@ -21,7 +21,7 @@ angular.module('OtlPlusServices')
 
     function inProgress() {
       return storageGet(CACHE_KEY, function(data) {
-        return Types.matchProjectsAndTasksFor(data[CACHE_KEY]) || blank();
+        return data[CACHE_KEY] || blank();
       });
     }
 
