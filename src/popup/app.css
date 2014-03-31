@@ -6,3 +6,7 @@ body {
 body input {
   width: 3em;
 }
+
+body input#po {
+  width: 5em;
+}

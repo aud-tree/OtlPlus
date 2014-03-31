@@ -2,6 +2,9 @@ angular.module('OtlPlusControllers')
   .controller('TableCtrl', ['$scope', 'Timesheet', 'Types', function($scope, Timesheet, Types) {
     $scope.projects = Types.projects();
     $scope.tasks = Types.tasks();
+    chrome.storage.local.get('otl-po', function(data) {
+      $scope.po = data['otl-po'] || '';
+    });
 
     Timesheet.inProgress().then(function(timesheet) {
       $scope.timesheet = timesheet;

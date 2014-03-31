@@ -11,12 +11,18 @@ angular.module('OtlPlusServices')
       }
     ]};
 
-    function inProgress() {
+    function storageGet(key, callback) {
       var deferred = $q.defer();
-      chrome.storage.local.get(CACHE_KEY, function(data) {
-        deferred.resolve(Types.matchProjectsAndTasksFor(data[CACHE_KEY]) || blank());
+      chrome.storage.local.get(key, function(data) {
+        deferred.resolve(callback(data));
       });
       return deferred.promise;
+    }
+
+    function inProgress() {
+      return storageGet(CACHE_KEY, function(data) {
+        return Types.matchProjectsAndTasksFor(data[CACHE_KEY]) || blank();
+      });
     }
 
     function cache(timesheet) {
