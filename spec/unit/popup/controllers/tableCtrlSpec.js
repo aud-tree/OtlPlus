@@ -50,4 +50,15 @@ describe('TableCtrl', function() {
       expect(cacheSpy).toHaveBeenCalledWith(['test']);
     });
   });
+
+  describe('.cachePo', function() {
+    it('caches the po', function() {
+      chromeStorageSaved = {};
+
+      scope.po = '123456'
+      scope.cachePo();
+
+      expect(chromeStorageSaved['otl-po']).toEqual('123456');
+    });
+  });
 });
