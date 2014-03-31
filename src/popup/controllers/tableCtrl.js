@@ -16,6 +16,8 @@ angular.module('OtlPlusControllers')
 
     $scope.cachePo = function() { chrome.storage.local.set({'otl-po': $scope.po}); }
 
+    $scope.sendToOTL = function() { Timesheet.sendToOTL($scope.timesheet, $scope.po); };
+
     $scope.totalHoursForRow = function(index) {
       return $scope.timesheet[index].hours.reduce(function(total, hour) {
         return total + parseFloat(hour);

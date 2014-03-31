@@ -33,10 +33,22 @@ angular.module('OtlPlusServices')
 
     function blankRow() { return blank()[0]; }
 
-    function sendToOTL(timesheet) {
+    function formatForOTL(timesheet, po) {
+      return timesheet.map(function(row) {
+        return [
+          row.project.value,
+          row.task.value,
+          po,
+          row.line,
+          row.type,
+        ].concat(row.hours);
+      });
+    }
+
+    function sendToOTL(timesheet, po) {
       chrome.tabs.query({active: true, currentWindow: true},
       function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {timesheet: timesheet});
+        chrome.tabs.sendMessage(tabs[0].id, {timesheet: formatForOTL(timesheet, po)});
       });
     }
 
