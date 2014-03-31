@@ -2,7 +2,7 @@ var chrome;
 
 describe('Timesheet', function() {
   var serviceFactory, qResolve, chromeStorageReturns, chromeStorageSaved, blankRow;
-  blankRow = [{project: null, task: null}];
+  blankRow = [{project: null, task: null, hours: [0,0,0,0,0,0,0]}];
   chrome = {
     storage: {local: {
       get: function(key, callback) {callback(chromeStorageReturns);},

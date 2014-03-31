@@ -2,3 +2,7 @@ body {
   width: 600px;
   font-family: 'Open Sans', 'Noto Sans','Segoe UI','Lucida Grande',arial,sans-serif;
 }
+
+body input {
+  width: 3em;
+}

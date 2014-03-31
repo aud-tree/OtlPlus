@@ -10,4 +10,10 @@ angular.module('OtlPlusControllers')
     $scope.addRow = function() { $scope.timesheet.push(Timesheet.blankRow()); };
 
     $scope.cache = function() { Timesheet.cache($scope.timesheet); };
+
+    $scope.totalHoursForRow = function(index) {
+      return $scope.timesheet[index].hours.reduce(function(total, hour) {
+        return total + parseFloat(hour);
+      }, 0);
+    };
   }])

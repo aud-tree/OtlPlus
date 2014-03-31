@@ -1,7 +1,7 @@
 angular.module('OtlPlusServices')
   .factory('Timesheet', ['$q', 'Types', function($q, Types) {
     var CACHE_KEY = 'otl-timesheet-cached'
-    function blank() {return [{project: null, task: null}]};
+    function blank() {return [{project: null, task: null, hours: [0,0,0,0,0,0,0]}]};
 
     function inProgress() {
       var deferred = $q.defer();

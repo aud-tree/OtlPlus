@@ -1,10 +1,10 @@
 <!doctype html>
-<html data-ng-app="OtlPlus">
+<html ng-app="OtlPlus">
 <head>
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <div data-ng-controller="TableCtrl">
+  <div ng-controller="TableCtrl">
     <h4>Timesheet</h4>
     <table>
       <colgroup span="2">
@@ -24,31 +24,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="row in timesheet track by $index">
+        <tr ng-repeat="row in timesheet track by $index">
           <td>
             <select
-              data-ng-model="row.project"
-              data-ng-options="p.name for p in projects"
-              data-ng-change="cache()"></select>
+              ng-model="row.project"
+              ng-options="p.name for p in projects"
+              ng-change="cache()"></select>
           </td>
           <td>
             <select
-              data-ng-model="row.task"
-              data-ng-options="t.name for t in tasks[row.project['taskType']]"
-              data-ng-change="cache()"></select>
+              ng-model="row.task"
+              ng-options="t.name for t in tasks[row.project['taskType']]"
+              ng-change="cache()"></select>
           </td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
+          <td ng-repeat="hour in row.hours track by $index">
+            <input type="text" ng-model="row.hours[$index]" ng-change="cache()">
+          </td>
+          <td>{{totalHoursForRow($index)|number}}</td>
         </tr>
       </tbody>
     </table>
-    <button data-ng-click="addRow()">Add Row</button>
+    <button ng-click="addRow()">Add Row</button>
   </div>
 
   <script type="text/javascript" src="../vendor/jquery-2.1.0.min.js"></script>
