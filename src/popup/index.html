@@ -30,13 +30,15 @@
             <select
               ng-model="row.projectName"
               ng-options="name for name in projectNames"
-              ng-change="cache()"></select>
+              ng-change="cache()">
+            </select>
           </td>
           <td>
             <select
               ng-model="row.taskName"
-              ng-options=""
-              ng-change="cache()"></select>
+              ng-options="name for name in taskNames(row.projectName)"
+              ng-change="cache()">
+            </select>
           </td>
           <td ng-repeat="hour in row.hours track by $index">
             <input type="text" ng-model="row.hours[$index]" ng-change="cache()">

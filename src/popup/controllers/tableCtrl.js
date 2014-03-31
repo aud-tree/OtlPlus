@@ -1,7 +1,8 @@
 angular.module('OtlPlusControllers')
   .controller('TableCtrl', ['$scope', 'Timesheet', 'Types', function($scope, Timesheet, Types) {
     $scope.projectNames = Types.projectNames();
-    $scope.taskNames = Types.taskNames();
+    $scope.taskNames = function(projectName) { return Types.taskNames(projectName) };
+
     chrome.storage.local.get('otl-po', function(data) {
       $scope.po = data['otl-po'] || '';
     });

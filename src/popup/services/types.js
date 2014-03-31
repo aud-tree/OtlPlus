@@ -23,10 +23,17 @@ angular.module('OtlPlusServices')
 
     function projectNames() { return PROJECTS.map(function(p) { return p.name; }); }
 
-    function taskNames() { return TASKS; }
+    function tasks() { return TASKS; }
+
+    function taskNames(projectName) {
+      return TASKS[PROJECTS.filter(function(project) {
+        return project.name == projectName;
+      })[0].taskType].map(function(t) { return t.name; });
+    }
 
     return {
       projectNames: projectNames,
-      taskNames: taskNames,
+      tasks: tasks,
+      taskNames: taskNames
     };
   });

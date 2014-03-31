@@ -21,9 +21,9 @@ describe('Types', function() {
     });
   });
 
-  describe('.taskNames', function() {
-    it('returns task names', function() {
-      expect(this.Types.taskNames()[1].length).toEqual(3);
+  describe('.tasks', function() {
+    it('returns task objects', function() {
+      expect(this.Types.tasks()[1].length).toEqual(3);
     });
   });
 });
