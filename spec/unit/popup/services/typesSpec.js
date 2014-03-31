@@ -35,5 +35,24 @@ describe('Types', function() {
         [{project: this.Types.projects()[0]}]
       );
     });
+
+    it('handles the null case', function() {
+      expect(this.Types.matchProjectsFor(null)).toEqual(null);
+    });
+  });
+
+  describe('.matchTasksFor', function() {
+    it('returns references matching each task in the provided set for the taskType', function() {
+      var taskType = this.Types.projects()[0].taskType;
+      expect(this.Types.matchTasksFor(
+        [{project: {taskType: taskType}, task: {value: this.Types.tasks()[taskType][0].value}}]
+      )).toEqual(
+        [{project: {taskType: taskType}, task: this.Types.tasks()[taskType][0]}]
+      );
+    });
+
+    it('handles the null case', function() {
+      expect(this.Types.matchTasksFor(null)).toEqual(null);
+    });
   });
 });

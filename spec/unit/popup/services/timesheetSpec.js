@@ -17,7 +17,7 @@ describe('Timesheet', function() {
 
   var fakeTypes = {
     projects: function() {},
-    matchProjectsFor: function(data) { return data; },
+    matchProjectsAndTasksFor: function(data) { return data; },
     tasks: function() {}
   };
 

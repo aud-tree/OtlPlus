@@ -6,7 +6,7 @@ angular.module('OtlPlusServices')
     function inProgress() {
       var deferred = $q.defer();
       chrome.storage.local.get(CACHE_KEY, function(data) {
-        deferred.resolve(Types.matchProjectsFor(data[CACHE_KEY]) || blank());
+        deferred.resolve(Types.matchProjectsAndTasksFor(data[CACHE_KEY]) || blank());
       });
       return deferred.promise;
     }

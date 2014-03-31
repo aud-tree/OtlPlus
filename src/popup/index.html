@@ -34,7 +34,7 @@
           <td>
             <select
               data-ng-model="row.task"
-              data-ng-options="t for t in tasks"
+              data-ng-options="t.name for t in tasks[row.project['taskType']]"
               data-ng-change="cache()"></select>
           </td>
           <td>0</td>

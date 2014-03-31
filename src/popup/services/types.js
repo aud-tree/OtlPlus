@@ -26,15 +26,28 @@ angular.module('OtlPlusServices')
     function tasks() { return TASKS; }
 
     function matchProjectsFor(timesheet) {
-      return timesheet.map(function(row) {
+      return timesheet ? timesheet.map(function(row) {
         row.project = PROJECTS.filter(function(proj) { return proj.value == row.project.value })[0];
         return row;
-      });
+      }) : timesheet;
+    }
+
+    function matchTasksFor(timesheet) {
+      return timesheet ? timesheet.map(function(row) {
+        row.task = TASKS[row.project.taskType].filter(function(t) { return t.value == row.task.value })[0];
+        return row;
+      }) : timesheet;
+    }
+
+    function matchProjectsAndTasksFor(timesheet) {
+      return matchTasksFor(matchProjectsFor(timesheet));
     }
 
     return {
       projects: projects,
+      tasks: tasks,
       matchProjectsFor: matchProjectsFor,
-      tasks: tasks
+      matchTasksFor: matchTasksFor,
+      matchProjectsAndTasksFor: matchProjectsAndTasksFor
     };
   });
