@@ -21,12 +21,21 @@ angular.module('OtlPlusServices')
       }
     };
 
+    var DEFAULT_TASKS = {
+      1: 'Codes',
+      2: 'Yaaaay2'
+    };
+
     function projectNames() { return Object.keys(PROJECTS); }
 
     function tasks() { return TASKS; }
 
     function taskNames(projectName) {
       return Object.keys(TASKS[PROJECTS[projectName].taskType]);
+    }
+
+    function defaultTask(projectName) {
+      return DEFAULT_TASKS[PROJECTS[projectName].taskType];
     }
 
     function projectValue(name) { return PROJECTS[name].value; }
@@ -39,6 +48,7 @@ angular.module('OtlPlusServices')
       projectNames: projectNames,
       tasks: tasks,
       taskNames: taskNames,
+      defaultTask: defaultTask,
       projectValue: projectValue,
       taskValue: taskValue
     };

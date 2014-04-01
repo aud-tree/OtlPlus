@@ -31,7 +31,7 @@
             <select
               ng-model="row.projectName"
               ng-options="name for name in projectNames"
-              ng-change="cache()">
+              ng-change="selectDefaultTask();cache()">
             </select>
           </td>
           <td>

@@ -3,10 +3,8 @@ angular.module('OtlPlusControllers')
     $scope.projectNames = Types.projectNames();
     $scope.taskNames = function(projectName) { return Types.taskNames(projectName) };
 
-    $scope.totalHoursInRow = function() {
-      return $scope.row.hours.reduce(function(total, hour) {
-        return total + parseFloat(hour);
-      }, 0);
+    $scope.selectDefaultTask = function() {
+      $scope.row.taskName = Types.defaultTask($scope.row.projectName);
     };
 
     if(undefined === $scope.row.autocompleteEnabled) {
@@ -25,5 +23,11 @@ angular.module('OtlPlusControllers')
         $scope.row.autocompleteEnabled = false;
         $scope.cache();
       }
+    };
+
+    $scope.totalHoursInRow = function() {
+      return $scope.row.hours.reduce(function(total, hour) {
+        return total + parseFloat(hour);
+      }, 0);
     };
   }]);

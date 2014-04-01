@@ -1,7 +1,9 @@
 angular.module('OtlPlusControllers')
   .controller('TableCtrl', ['$scope', 'Timesheet', 'Types', function($scope, Timesheet, Types) {
-    chrome.storage.local.get('otl-po', function(data) {
-      $scope.po = data['otl-po'] || '';
+    var OTL_KEY = 'otl-po';
+
+    chrome.storage.local.get(OTL_KEY, function(data) {
+      $scope.po = data[OTL_KEY] || '';
     });
 
     Timesheet.inProgress().then(function(timesheet) {
@@ -14,7 +16,11 @@ angular.module('OtlPlusControllers')
 
     $scope.cache = function() { Timesheet.cache($scope.timesheet); };
 
-    $scope.cachePo = function() { chrome.storage.local.set({'otl-po': $scope.po}); }
+    $scope.cachePo = function() {
+      object = {};
+      object[OTL_KEY] = $scope.po;
+      chrome.storage.local.set(object);
+    }
 
     $scope.sendToOTL = function() { Timesheet.sendToOTL($scope.timesheet, $scope.po); };
   }])
