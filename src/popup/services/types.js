@@ -1,12 +1,12 @@
 angular.module('OtlPlusServices')
   .factory('Types', function() {
-    var PROJECTS = [
-      {name: 'These are', value: '100000', taskType: 1},
-      {name: 'some fake', value: '100001', taskType: 1},
-      {name: 'project codes.', value: '100002', taskType: 2},
-      {name: "Real ones can't", value: '100003', taskType: 2},
-      {name: 'be posted on github.', value: '100004', taskType: 2},
-    ];
+    var PROJECTS = {
+      'These are': { value: '100000', taskType: 1},
+      'some fake': { value: '100001', taskType: 1},
+      'project codes.': { value: '100002', taskType: 2},
+      "Real ones can't": { value: '100003', taskType: 2},
+      'be posted on github.': { value: '100004', taskType: 2},
+    };
 
     var TASKS = {
       1: [
@@ -21,15 +21,15 @@ angular.module('OtlPlusServices')
       ]
     };
 
-    function projectNames() { return PROJECTS.map(function(p) { return p.name; }); }
+    function projectNames() { return Object.keys(PROJECTS); }
 
     function tasks() { return TASKS; }
 
     function taskNames(projectName) {
-      return TASKS[PROJECTS.filter(function(project) {
-        return project.name == projectName;
-      })[0].taskType].map(function(t) { return t.name; });
+      return TASKS[PROJECTS[projectName].taskType].map(function(t) { return t.name; });
     }
+
+    function projectValue(name) { return PROJECTS[name].value; }
 
     return {
       projectNames: projectNames,

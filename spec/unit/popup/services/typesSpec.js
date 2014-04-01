@@ -26,4 +26,10 @@ describe('Types', function() {
       expect(this.Types.tasks()[1].length).toEqual(3);
     });
   });
+
+  describe('.taskNames', function() {
+    it('returns task names for a given project name', function() {
+      expect(this.Types.taskNames(this.Types.projectNames()[0]).length).toEqual(3);
+    });
+  });
 });
