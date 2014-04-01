@@ -22,6 +22,7 @@
           <th>F</th>
           <th>Sa</th>
           <th>Total</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -44,6 +45,7 @@
             <input type="text" ng-model="row.hours[$index]" ng-change="cache()">
           </td>
           <td>{{totalHoursForRow($index)|number}}</td>
+          <td>[<a href="#" ng-click="removeRow($index)">x</a>]</td>
         </tr>
       </tbody>
     </table>

@@ -41,6 +41,14 @@ describe('TableCtrl', function() {
     });
   });
 
+  describe('.removeRow', function() {
+    it('removes a row', function() {
+      scope.removeRow(0);
+
+      expect(scope.timesheet.length).toEqual(0);
+    });
+  });
+
   describe('.cache', function() {
     it('caches the current timesheet', function() {
       cacheSpy = spyOn(fakeTimesheet, 'cache');
