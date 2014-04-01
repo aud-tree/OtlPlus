@@ -9,16 +9,16 @@ angular.module('OtlPlusServices')
     };
 
     var TASKS = {
-      1: [
-        {name: 'Fake', value: '1.0'},
-        {name: 'Codes', value: '2.0'},
-        {name: 'Yaaaay', value: '3.0'}
-      ],
-      2: [
-        {name: 'More Fake', value: '1.0'},
-        {name: 'Codes2', value: '2.0'},
-        {name: 'Yaaaay2', value: '3.0'}
-      ]
+      1: {
+        'Fake': '1.0',
+        'Codes': '2.0',
+        'Yaaaay': '3.0'
+      },
+      2: {
+        'More Fake': '1.0',
+        'Codes2': '2.0',
+        'Yaaaay2': '3.0'
+      }
     };
 
     function projectNames() { return Object.keys(PROJECTS); }
@@ -26,14 +26,20 @@ angular.module('OtlPlusServices')
     function tasks() { return TASKS; }
 
     function taskNames(projectName) {
-      return TASKS[PROJECTS[projectName].taskType].map(function(t) { return t.name; });
+      return Object.keys(TASKS[PROJECTS[projectName].taskType]);
     }
 
     function projectValue(name) { return PROJECTS[name].value; }
 
+    function taskValue(projectName, taskName) {
+      return TASKS[PROJECTS[projectName].taskType][taskName];
+    }
+
     return {
       projectNames: projectNames,
       tasks: tasks,
-      taskNames: taskNames
+      taskNames: taskNames,
+      projectValue: projectValue,
+      taskValue: taskValue
     };
   });

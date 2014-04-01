@@ -3,8 +3,8 @@ angular.module('OtlPlusServices')
     var CACHE_KEY = 'otl-timesheet-cached'
     function blank() {return [
       {
-        project: null,
-        task: null,
+        projectName: null,
+        taskName: null,
         line: 1,
         type: 'CONTRACT LABOR - OTL',
         hours: [0,0,0,0,0,0,0]
@@ -36,8 +36,8 @@ angular.module('OtlPlusServices')
     function formatForOTL(timesheet, po) {
       return timesheet.map(function(row) {
         return [
-          row.project.value,
-          row.task.value,
+          Types.projectValue(row.projectName),
+          Types.taskValue(row.projectName, row.taskName),
           po,
           row.line,
           row.type,

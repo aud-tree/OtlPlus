@@ -1,6 +1,6 @@
 describe('Timesheet', function() {
   var serviceFactory, qResolve, blankRow;
-  blankRow = [{project: null, task: null, line: 1, type: 'CONTRACT LABOR - OTL', hours: [0,0,0,0,0,0,0]}];
+  blankRow = [{projectName: null, taskName: null, line: 1, type: 'CONTRACT LABOR - OTL', hours: [0,0,0,0,0,0,0]}];
 
   qResolve = {resolve: function(data) {}};
   var q = {defer: function() {

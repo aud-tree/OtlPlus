@@ -23,7 +23,7 @@ describe('Types', function() {
 
   describe('.tasks', function() {
     it('returns task objects', function() {
-      expect(this.Types.tasks()[1].length).toEqual(3);
+      expect(Object.keys(this.Types.tasks()[1]).length).toEqual(3);
     });
   });
 
