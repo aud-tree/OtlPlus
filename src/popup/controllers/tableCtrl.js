@@ -21,9 +21,4 @@ angular.module('OtlPlusControllers')
 
     $scope.sendToOTL = function() { Timesheet.sendToOTL($scope.timesheet, $scope.po); };
 
-    $scope.totalHoursForRow = function(index) {
-      return $scope.timesheet[index].hours.reduce(function(total, hour) {
-        return total + parseFloat(hour);
-      }, 0);
-    };
   }])
