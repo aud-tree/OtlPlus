@@ -38,7 +38,6 @@ angular.module('OtlPlusControllers')
 
     $scope.sendToOTL = function() {
       Timesheet.sendToOTL($scope.timesheet, $scope.po);
-      $scope.timesheet = {};
       $scope.init();
     };
 
