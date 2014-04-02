@@ -6,7 +6,6 @@
 <body>
   <div ng-controller="TableCtrl">
     <h4>Timesheet <button ng-click="last()">Use Last</button></h4>
-    
     <label>PO: <input id="po" ng-model="po" ng-blur="cachePo()"></label>
     <table>
       <colgroup span="2">
@@ -48,9 +47,20 @@
           <td>{{totalHoursInRow()|number}}</td>
           <td>[<a href="#" ng-click="removeRow($index)">x</a>]</td>
         </tr>
+        <tr>
+          <td><button ng-click="addRow()">Add Row</button></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{totalHours()|number}}</td>
+        </tr>
       </tbody>
     </table>
-    <button ng-click="addRow()">Add Row</button>
     <button class="insertBtn" ng-click="sendToOTL()">Send to OTL Form</button>
   </div>
 

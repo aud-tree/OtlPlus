@@ -42,4 +42,7 @@ angular.module('OtlPlusControllers')
       $scope.init();
     };
 
+    $scope.totalHours = function() { return $scope.timesheet.reduce(function(total, row) {
+      return total + row.hours.reduce(function(rowTotal, hour) { return rowTotal + parseFloat(hour)});
+    }, 0); };
   }])
