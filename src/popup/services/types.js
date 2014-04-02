@@ -1,30 +1,20 @@
 angular.module('OtlPlusServices')
-  .factory('Types', function() {
-    var PROJECTS = {
-      'These are': { value: '100000', taskType: 1},
-      'some fake': { value: '100001', taskType: 1},
-      'project codes.': { value: '100002', taskType: 2},
-      "Real ones can't": { value: '100003', taskType: 2},
-      'be posted on github.': { value: '100004', taskType: 2},
-    };
+  .factory('Types', ['$http', '$q', function($http, $q) {
+    var PROJECTS = {};
+    var TASKS = {};
+    var DEFAULT_TASKS = {};
 
-    var TASKS = {
-      1: {
-        'Fake': '1.0',
-        'Codes': '2.0',
-        'Yaaaay': '3.0'
-      },
-      2: {
-        'More Fake': '1.0',
-        'Codes2': '2.0',
-        'Yaaaay2': '3.0'
-      }
-    };
-
-    var DEFAULT_TASKS = {
-      1: 'Codes',
-      2: 'Yaaaay2'
-    };
+    function load() {
+      var deferred = $q.defer();
+      $http.get('http://audreyschwarz.github.io/OtlPlus/project_codes.json')
+        .success(function(data) {
+          PROJECTS = data.projects;
+          TASKS = data.tasks;
+          DEFAULT_TASKS = data.defaultTasks;
+          deferred.resolve();
+        });
+      return deferred.promise;
+    }
 
     function projectNames() { return Object.keys(PROJECTS); }
 
@@ -45,6 +35,7 @@ angular.module('OtlPlusServices')
     }
 
     return {
+      load: load,
       projectNames: projectNames,
       tasks: tasks,
       taskNames: taskNames,
@@ -52,4 +43,4 @@ angular.module('OtlPlusServices')
       projectValue: projectValue,
       taskValue: taskValue
     };
-  });
+  }]);

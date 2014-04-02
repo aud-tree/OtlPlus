@@ -19,6 +19,7 @@
   "permissions": [
     "tabs",
     "webNavigation",
-    "storage"
+    "storage",
+    "http://audreyschwarz.github.io/"
   ]
 }

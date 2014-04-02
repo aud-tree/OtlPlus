@@ -1,7 +1,9 @@
 angular.module('OtlPlusControllers')
   .controller('RowCtrl', ['$scope', 'Types', function($scope, Types) {
-    $scope.projectNames = Types.projectNames();
-    $scope.taskNames = function(projectName) { return Types.taskNames(projectName) };
+    Types.load().then(function() {
+      $scope.projectNames = Types.projectNames();
+      $scope.taskNames = function(projectName) { return Types.taskNames(projectName) };
+    });
 
     $scope.selectDefaultTask = function() {
       $scope.row.taskName = Types.defaultTask($scope.row.projectName);
