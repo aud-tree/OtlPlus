@@ -6,9 +6,23 @@ angular.module('OtlPlusControllers')
       $scope.po = data[OTL_KEY] || '';
     });
 
-    Timesheet.inProgress().then(function(timesheet) {
-      $scope.timesheet = timesheet;
+    Types.load().then(function() {
+      $scope.projectNames = Types.projectNames();
+      $scope.taskNames = function(projectName) { return Types.taskNames(projectName) };
     });
+
+    $scope.init = function() {
+      Timesheet.inProgress().then(function(timesheet) {
+        $scope.timesheet = timesheet;
+      });
+    };
+    $scope.init();
+
+    $scope.last = function() {
+      Timesheet.last().then(function(timesheet) {
+        $scope.timesheet = timesheet;
+      });
+    };
 
     $scope.addRow = function() { $scope.timesheet.push(Timesheet.blankRow()); };
 
@@ -22,5 +36,10 @@ angular.module('OtlPlusControllers')
       chrome.storage.local.set(object);
     }
 
-    $scope.sendToOTL = function() { Timesheet.sendToOTL($scope.timesheet, $scope.po); };
+    $scope.sendToOTL = function() {
+      Timesheet.sendToOTL($scope.timesheet, $scope.po);
+      $scope.timesheet = {};
+      $scope.init();
+    };
+
   }])

@@ -1,6 +1,7 @@
 angular.module('OtlPlusServices')
   .factory('Timesheet', ['$q', 'Types', function($q, Types) {
     var CACHE_KEY = 'otl-timesheet-cached'
+    var LAST_KEY = 'otl-timesheet-last'
     function blank() {return [
       {
         projectName: null,
@@ -25,9 +26,25 @@ angular.module('OtlPlusServices')
       });
     }
 
+    function last() {
+      return storageGet(LAST_KEY, function(data) {
+        return data[LAST_KEY] || blank();
+      });
+    }
+
     function cache(timesheet) {
       var object = {};
       object[CACHE_KEY] = timesheet;
+      chrome.storage.local.set(object);
+    }
+
+    function clearCache() {
+      chrome.storage.local.remove(CACHE_KEY);
+    }
+
+    function saveLast(timesheet) {
+      var object = {};
+      object[LAST_KEY] = timesheet;
       chrome.storage.local.set(object);
     }
 
@@ -46,14 +63,17 @@ angular.module('OtlPlusServices')
     }
 
     function sendToOTL(timesheet, po) {
+      saveLast(timesheet);
       chrome.tabs.query({active: true, currentWindow: true},
       function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {timesheet: formatForOTL(timesheet, po)});
       });
+      clearCache();
     }
 
     return {
       inProgress: inProgress,
+      last: last,
       cache: cache,
       blankRow: blankRow,
       sendToOTL: sendToOTL
