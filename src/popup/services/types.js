@@ -6,7 +6,7 @@ angular.module('OtlPlusServices')
 
     function load() {
       var deferred = $q.defer();
-      $http.get('http://audreyschwarz.github.io/OtlPlus/project_codes.json')
+      $http.get('http://github.ove.local/pages/aschwarz1/OtlCodes/project_codes.json')
         .success(function(data) {
           PROJECTS = data.projects;
           TASKS = data.tasks;
