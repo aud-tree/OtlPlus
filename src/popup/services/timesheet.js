@@ -75,6 +75,7 @@ angular.module('OtlPlusServices')
       inProgress: inProgress,
       last: last,
       cache: cache,
+      blank: blank,
       blankRow: blankRow,
       sendToOTL: sendToOTL
     };

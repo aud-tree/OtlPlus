@@ -11,12 +11,9 @@ angular.module('OtlPlusControllers')
       $scope.taskNames = function(projectName) { return Types.taskNames(projectName) };
     });
 
-    $scope.init = function() {
-      Timesheet.inProgress().then(function(timesheet) {
-        $scope.timesheet = timesheet;
-      });
-    };
-    $scope.init();
+    Timesheet.inProgress().then(function(timesheet) {
+      $scope.timesheet = timesheet;
+    });
 
     $scope.last = function() {
       Timesheet.last().then(function(timesheet) {
@@ -38,7 +35,7 @@ angular.module('OtlPlusControllers')
 
     $scope.sendToOTL = function() {
       Timesheet.sendToOTL($scope.timesheet, $scope.po);
-      $scope.init();
+      $scope.timesheet = Timesheet.blank();
     };
 
     $scope.totalHours = function() { return $scope.timesheet.reduce(function(total, row) {

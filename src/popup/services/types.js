@@ -21,12 +21,12 @@ angular.module('OtlPlusServices')
     function tasks() { return TASKS; }
 
     function taskNames(projectName) {
-      if(!projectName) { return ['']; };
+      if(!projectName) { return []; };
       return Object.keys(TASKS[PROJECTS[projectName].taskType]);
     }
 
     function defaultTask(projectName) {
-      if(!projectName) { return ''; };
+      if(!projectName) { return null; };
       return DEFAULT_TASKS[PROJECTS[projectName].taskType];
     }
 
