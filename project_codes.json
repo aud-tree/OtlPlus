@@ -2,10 +2,10 @@
   "projects": {
     "A Fake Project": { "value": "100000", "taskType": "1", "default": "8"},
     "Another Fake": { "value": "100001", "taskType": "1", "default": "8"},
-    "Everything is Fake": { "value": "100002", "taskType": "1"}, "default": "4",
-    "Fake Fake Fake": { "value": "100003", "taskType": "2", "default": "8"},
-    "JSON is actually": { "value": "100004", "taskType": "2", "default": "8"},
-    "really annoying": { "value": "100005", "taskType": "2", "default": "8"},
+    "Everything is Fake": { "value": "100002", "taskType": "1", "default": "4"},
+    "Fake Fake Fake": { "value": "100003", "taskType": "2", "default": "11"},
+    "JSON is actually": { "value": "100004", "taskType": "2", "default": "11"},
+    "really annoying": { "value": "100005", "taskType": "2", "default": "11"},
     "to write": { "value": "100006", "taskType": "1", "default": "8"},
     "way too many": { "value": "100007", "taskType": "1", "default": "8"},
     "double quotes": { "value": "100008", "taskType": "1", "default": "8"}
