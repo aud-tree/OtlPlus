@@ -2,15 +2,15 @@ angular.module('OtlPlusServices')
   .factory('Types', ['$http', '$q', function($http, $q) {
     var PROJECTS = {};
     var TASKS = {};
-    var DEFAULT_TASKS = {};
+    var TASK_TYPES = {};
 
     function load() {
       var deferred = $q.defer();
-      $http.get('http://github.ove.local/pages/aschwarz1/OtlCodes/project_codes.json')
+      $http.get('http://audreyschwarz.github.io/OtlPlus/project_codes.json')
         .success(function(data) {
           PROJECTS = data.projects;
           TASKS = data.tasks;
-          DEFAULT_TASKS = data.defaultTasks;
+          TASK_TYPES = data.taskTypes;
           deferred.resolve();
         });
       return deferred.promise;
@@ -18,28 +18,29 @@ angular.module('OtlPlusServices')
 
     function projectNames() { return Object.keys(PROJECTS); }
 
-    function tasks() { return TASKS; }
-
     function taskNames(projectName) {
       if(!projectName) { return []; };
-      return Object.keys(TASKS[PROJECTS[projectName].taskType]);
+      return TASK_TYPES[PROJECTS[projectName].taskType].map(function(taskId) {
+        return TASKS[taskId].name
+      });
     }
 
     function defaultTask(projectName) {
       if(!projectName) { return null; };
-      return DEFAULT_TASKS[PROJECTS[projectName].taskType];
+      return TASKS[PROJECTS[projectName].default].name;
     }
 
     function projectValue(name) { return PROJECTS[name].value; }
 
     function taskValue(projectName, taskName) {
-      return TASKS[PROJECTS[projectName].taskType][taskName];
+      return TASKS[TASK_TYPES[PROJECTS[projectName].taskType].filter(function(taskId) {
+        return TASKS[taskId].name === taskName;
+      })[0]].value;
     }
 
     return {
       load: load,
       projectNames: projectNames,
-      tasks: tasks,
       taskNames: taskNames,
       defaultTask: defaultTask,
       projectValue: projectValue,

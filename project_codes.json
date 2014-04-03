@@ -1,0 +1,31 @@
+{
+  "projects": {
+    "A Fake Project": { "value": "100000", "taskType": "1", "default": "8"},
+    "Another Fake": { "value": "100001", "taskType": "1", "default": "8"},
+    "Everything is Fake": { "value": "100002", "taskType": "1", "default": "4"},
+    "Fake Fake Fake": { "value": "100003", "taskType": "2", "default": "11"},
+    "JSON is actually": { "value": "100004", "taskType": "2", "default": "11"},
+    "really annoying": { "value": "100005", "taskType": "2", "default": "11"},
+    "to write": { "value": "100006", "taskType": "1", "default": "8"},
+    "way too many": { "value": "100007", "taskType": "1", "default": "8"},
+    "double quotes": { "value": "100008", "taskType": "1", "default": "8"}
+  },
+  "tasks": {
+    "0": {"name": "Trivialities", "value": "01.0"},
+    "1": {"name": "Necessities", "value": "02.0"},
+    "2": {"name": "Non-necessities", "value": "03.0"},
+    "3": {"name": "Snacks", "value": "04.0"},
+    "4": {"name": "Eventualities", "value": "05.0"},
+    "5": {"name": "Digressions", "value": "06.0"},
+    "6": {"name": "An Elephant", "value": "07.0"},
+    "7": {"name": "Paleontology", "value": "08.0"},
+    "8": {"name": "Research", "value": "09.0"},
+    "9": {"name": "Destruction", "value": "10.0"},
+    "10": {"name": "Training (Dogs)", "value": "08.0"},
+    "11": {"name": "Training (Other)", "value": "09.0"}
+  },
+  "taskTypes": {
+    "1": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    "2": ["0", "1", "2", "3", "4", "5", "6", "10", "11"]
+  }
+}
